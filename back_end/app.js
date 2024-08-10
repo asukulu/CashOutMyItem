@@ -1,6 +1,21 @@
+//MONGODB PW: Mulongwe24
+//MONGODB CONNECT:mongodb+srv://eugenendela24:<password>@cashoutmystuff.tjq6h.mongodb.net/?retryWrites=true&w=majority&appName=CashOutMyStuff 
+
 const express = require('express');
 
 const app = express();
+
+const mongoose = require('mongoose');
+
+mongoose.connect('mongodb+srv://eugenendela24:Mulongwe24@cashoutmystuff.tjq6h.mongodb.net/?retryWrites=true&w=majority&appName=CashOutMyStuff')
+  .then(() => {
+    console.log('Successfully connected to MongoDB Atlas!');
+  })
+  .catch((error) => {
+    console.log('Unable to connect to MongoDB Atlas!');
+    console.error(error);
+  });
+
 
 app.use(express.json());
 
