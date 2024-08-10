@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const Item = require('./models/item');
+const stuffRoutes = require('./routes/stuff');
 
 const app = express();
 
@@ -24,45 +24,7 @@ app.use((req, res, next) => {
 
 app.use(bodyParser.json());
 
-// POST route
-app.post('/api/stuff', (req, res, next) => {
-  const item = new Item({
-    title: req.body.title,
-    description: req.body.description,
-    imageUrl: req.body.imageUrl,
-    price: req.body.price,
-    userId: req.body.userId
-  });
-  item.save().then(
-    () => {
-      res.status(201).json({
-        message: 'Post saved successfully!'
-      });
-    }
-  ).catch(
-    (error) => {
-      res.status(400).json({
-        error: error
-      });
-    }
-  );
-});
 
-// GET route
-app.get('/api/stuff', (req, res, next) => {
-  Item.find().then(
-    (items) => {
-      res.status(200).json(items);
-    }
-  ).catch(
-    (error) => {
-      res.status(400).json({
-        error: error
-      });
-    }
-  );
-});
+app.use('/api/stuff', stuffRoutes);
 
 module.exports = app;
-
-
