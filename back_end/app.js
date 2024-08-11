@@ -4,6 +4,9 @@ const mongoose = require('mongoose');
 const stuffRoutes = require('./routes/stuff');
 const userRoutes = require('./routes/user');
 
+
+const path = require('path');
+
 const app = express();
 
 mongoose.connect('mongodb+srv://eugenendela24:Mulongwe24@cashoutmystuff.tjq6h.mongodb.net/?retryWrites=true&w=majority&appName=CashOutMyStuff')
@@ -25,7 +28,8 @@ app.use((req, res, next) => {
 
 app.use(bodyParser.json());
 
-
+// Middleware to serve images
+app.use('/images', express.static(path.join(__dirname, 'images')));
 app.use('/api/stuff', stuffRoutes);
 app.use('/api/auth', userRoutes);
 
