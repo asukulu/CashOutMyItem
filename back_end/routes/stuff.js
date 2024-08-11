@@ -20,6 +20,6 @@ router.get('/', auth, stuffCtrl.getAllItem);
 router.delete('/:id', auth, stuffCtrl.deleteItem);
 
 // PUT route to update an item by ID
-router.put('/:id', auth, stuffCtrl.modifyItem);
+router.put('/:id', auth,multer, stuffCtrl.modifyItem);
 
 module.exports = router;  // Corrected the typo here
